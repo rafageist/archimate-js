@@ -1,0 +1,6 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<archimate:Archimate xmlns:archimate="http://www.archimatetool.com/archimate">
+  <element id="1" name="业务服务" type="archimate:BusinessService"/>
+  <element id="2" name="应用组件" type="archimate:ApplicationComponent"/>
+  <relationship source="1" target="2" type="archimate:ServingRelationship"/>
+</archimate:Archimate>

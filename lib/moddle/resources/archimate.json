@@ -17,7 +17,11 @@
       ]
     },
     { "name": "BaseElement",
-      "superClass": ["Concept"]
+      "superClass": ["Concept"],
+      "properties": [
+        { "name": "recordLink", "type": "String", "isAttr": true },
+        { "name": "recordLabel", "type": "String", "isAttr": true }
+      ]
     },
     { "name": "BaseObject",
       "isAbstract": true,
@@ -54,7 +58,7 @@
         },
         {
           "name": "isDirected",
-          "type": "Boolean",
+          "type": "String",
           "isAttr": true
         },
         {
@@ -90,6 +94,11 @@
     { "name": "Model",
       "superClass": ["BaseObject"],
       "properties": [
+        {
+          "name": "languageVersion",
+          "type": "String",
+          "isAttr": true
+        },
         {
           "name": "elementsNode",
           "type": "Elements"
@@ -415,4 +424,3 @@
     }
   ]
 }
-      

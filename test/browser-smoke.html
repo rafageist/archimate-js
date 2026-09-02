@@ -1,0 +1,58 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8"><title>ArchiMate browser smoke</title>
+    <link rel="stylesheet" href="../assets/archimate-js.css">
+    <link rel="stylesheet" href="../assets/palette-icons.css">
+  </head>
+  <body>
+    <p id="status">running</p>
+    <div id="canvas" style="width: 800px; height: 600px"></div>
+    <script src="../dist/archimate-modeler.production.min.js"></script>
+    <script>
+      (async function() {
+        const xml = `<?xml version="1.0" encoding="UTF-8"?>
+          <archimate:Model xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+            xmlns:archimate="http://www.opengroup.org/xsd/archimate/3.0/">
+            <name>Browser smoke</name>
+            <archimate:Elements />
+            <archimate:Views><archimate:Diagrams><archimate:View>
+              <name>Default View</name>
+            </archimate:View></archimate:Diagrams></archimate:Views>
+          </archimate:Model>`;
+        try {
+          const Modeler = window.ArchimateJS.default || window.ArchimateJS;
+          const modeler = new Modeler({ container: '#canvas' });
+          await modeler.importXML(xml);
+          const saved = await modeler.saveXML({ format: true });
+          if (!saved.xml.includes('Browser smoke')) throw new Error('XML round trip failed');
+          if (typeof modeler.get('modeling').updateProperties !== 'function') {
+            throw new Error('Link/Unlink modeling API is unavailable');
+          }
+          if (Modeler.Archimate4Registry.getConcept('Equipment').domain !== 'Technology') {
+            throw new Error('ArchiMate 4 registry is unavailable');
+          }
+          const missingIcons = Modeler.Archimate4Registry.concepts.filter((concept) => {
+            const domain = concept.domain.toLowerCase();
+            const conceptName = concept.id.replace(/([a-z])([A-Z])/g, '$1-$2').toLowerCase();
+            const suffix = conceptName.startsWith(`${domain}-`)
+              ? conceptName.slice(domain.length + 1)
+              : conceptName;
+            const className = `archimate-${domain}-${suffix}`;
+            const entry = document.querySelector(`.djs-palette .${className}`);
+            return !entry || getComputedStyle(entry).backgroundImage === 'none';
+          });
+          if (missingIcons.length) {
+            throw new Error(`Palette icons missing: ${missingIcons.map((item) => item.id).join(', ')}`);
+          }
+          document.body.dataset.status = 'passed';
+          document.getElementById('status').textContent = 'passed';
+          modeler.destroy();
+        } catch (error) {
+          document.body.dataset.status = `failed:${error.message}`;
+          document.getElementById('status').textContent = `failed: ${error.message}`;
+        }
+      })();
+    </script>
+  </body>
+</html>

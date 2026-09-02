@@ -13,8 +13,16 @@
     "modeling"
   ],
   "scripts": {
-    "all": "run-s lint test",
-    "lint": "eslint ."
+    "all": "yarn lint && yarn test",
+    "lint": "eslint .",
+    "test": "jest",
+    "test:watch": "jest --watch",
+    "test:coverage": "jest --coverage",
+    "test:ci": "jest --ci --coverage",
+    "start": "vite",
+    "generate:relationships": "node tools/generate-archimate4-relationships.mjs",
+    "build": "yarn generate:relationships && vite build",
+    "preview": "vite preview"
   },
   "repository": {
     "type": "git",
@@ -31,21 +39,28 @@
     "*.css"
   ],
   "devDependencies": {
+    "@babel/core": "^7.27.4",
+    "@babel/preset-env": "^7.27.2",
+    "@testing-library/jest-dom": "^6.4.2",
+    "@types/jest": "^29.5.14",
+    "@vitejs/plugin-react": "^4.2.1",
+    "babel-jest": "^30.0.0",
     "eslint": "^7.32.0",
     "eslint-plugin-bpmn-io": "^0.12.0",
     "eslint-plugin-import": "^2.25.2",
-    "file-loader": "^6.2.0",
+    "http-server": "^14.1.1",
+    "jest": "^30.0.0",
+    "jest-environment-jsdom": "^29.7.0",
     "npm-run-all": "^4.1.5",
-    "puppeteer": "^10.4.0",
-    "raw-loader": "^4.0.2",
-    "webpack": "^5.61.0"
+    "rollup": "^4.43.0",
+    "vite": "^6.3.5"
   },
   "dependencies": {
     "archimate-font": "file:./archimate-font",
     "bpmn-font": "^0.10.0",
     "css.escape": "^1.5.1",
-    "diagram-js": "^12.1.0",
-    "diagram-js-direct-editing": "^2.0.0",
+    "diagram-js": "^15.3.0",
+    "diagram-js-direct-editing": "^3.2.0",
     "hex-and-rgba": "^2.0.0",
     "ids": "^1.0.0",
     "inherits": "^2.0.4",
@@ -56,6 +71,38 @@
     "moddle": "^5.0.2",
     "moddle-xml": "^9.0.5",
     "object-refs": "^0.3.0",
+    "path-intersection": "^3.1.0",
     "tiny-svg": "^2.2.2"
-  }
+  },
+  "jest": {
+    "testEnvironment": "jsdom",
+    "transform": {
+      "^.+\\.[cm]?js$": "babel-jest"
+    },
+    "transformIgnorePatterns": [
+      "/node_modules/(?!diagram-js|didi|min-dash|min-dom|moddle|moddle-xml|ids|inherits|tiny-svg|hex-and-rgba)/"
+    ],
+    "moduleNameMapper": {
+      "^path-intersection$": "<rootDir>/node_modules/path-intersection/intersect.js",
+      "^@bpmn-io/diagram-js-ui$": "<rootDir>/node_modules/@bpmn-io/diagram-js-ui/lib/index.js"
+    },
+    "moduleFileExtensions": [
+      "js",
+      "json"
+    ],
+    "testMatch": [
+      "**/__tests__/**/*.js",
+      "**/?(*.)+(spec|test).js"
+    ],
+    "collectCoverage": true,
+    "coverageDirectory": "coverage",
+    "coverageReporters": [
+      "text",
+      "lcov"
+    ],
+    "setupFiles": [
+      "./jest.setup.js"
+    ]
+  },
+  "packageManager": "yarn@4.9.2"
 }

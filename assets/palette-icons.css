@@ -40,6 +40,94 @@ height: 22px !important;
 background-color: lightgrey;
 }
 
+/* ArchiMate 4 concepts supplied by the canonical registry. */
+.archimate-motivation-stakeholder { background-image: url("./icons/motivation_stakeholder.svg"); }
+.archimate-motivation-driver { background-image: url("./icons/motivation_driver.svg"); }
+.archimate-motivation-assessment { background-image: url("./icons/motivation_assessment.svg"); }
+.archimate-motivation-goal { background-image: url("./icons/motivation_goal.svg"); }
+.archimate-motivation-outcome { background-image: url("./icons/motivation_outcome.svg"); }
+.archimate-motivation-principle { background-image: url("./icons/motivation_principle.svg"); }
+.archimate-motivation-requirement { background-image: url("./icons/motivation_requirement.svg"); }
+.archimate-motivation-meaning { background-image: url("./icons/motivation_meaning.svg"); }
+.archimate-motivation-value { background-image: url("./icons/motivation_value.svg"); }
+.archimate-technology-equipment { background-image: url("./icons/physical_equipment.svg"); }
+.archimate-technology-facility { background-image: url("./icons/physical_facility.svg"); }
+.archimate-technology-distribution-network { background-image: url("./icons/physical_distribution_network.svg"); }
+.archimate-technology-material { background-image: url("./icons/physical_material.svg"); }
+.archimate-implementation-work-package { background-image: url("./icons/implementation_work_package.svg"); }
+.archimate-implementation-deliverable { background-image: url("./icons/implementation_deliverable.svg"); }
+.archimate-implementation-plateau { background-image: url("./icons/implementation_plateau.svg"); }
+.archimate-common-location { background-image: url("./icons/other_location.svg"); }
+.archimate-common-grouping { background-image: url("./icons/other_grouping.svg"); }
+.archimate-common-role { background-image: url("./icons/business_role.svg"); }
+.archimate-common-collaboration { background-image: url("./icons/business_collaboration.svg"); }
+.archimate-common-service { background-image: url("./icons/business_service.svg"); }
+.archimate-common-process { background-image: url("./icons/business_process.svg"); }
+.archimate-common-function { background-image: url("./icons/business_function.svg"); }
+.archimate-common-event { background-image: url("./icons/business_event.svg"); }
+.archimate-common-path { background-image: url("./icons/technology_path.svg"); }
+
+.archimate-motivation-stakeholder,
+.archimate-motivation-driver,
+.archimate-motivation-assessment,
+.archimate-motivation-goal,
+.archimate-motivation-outcome,
+.archimate-motivation-principle,
+.archimate-motivation-requirement,
+.archimate-motivation-meaning,
+.archimate-motivation-value,
+.archimate-technology-equipment,
+.archimate-technology-facility,
+.archimate-technology-distribution-network,
+.archimate-technology-material,
+.archimate-implementation-work-package,
+.archimate-implementation-deliverable,
+.archimate-implementation-plateau,
+.archimate-common-location,
+.archimate-common-grouping,
+.archimate-common-role,
+.archimate-common-collaboration,
+.archimate-common-service,
+.archimate-common-process,
+.archimate-common-function,
+.archimate-common-event,
+.archimate-common-path {
+background-repeat: no-repeat;
+background-size: 18px 18px;
+background-position: center;
+margin: 4px 0 0 4px;
+width: 22px !important;
+height: 22px !important;
+}
+
+.archimate-motivation-stakeholder:hover,
+.archimate-motivation-driver:hover,
+.archimate-motivation-assessment:hover,
+.archimate-motivation-goal:hover,
+.archimate-motivation-outcome:hover,
+.archimate-motivation-principle:hover,
+.archimate-motivation-requirement:hover,
+.archimate-motivation-meaning:hover,
+.archimate-motivation-value:hover,
+.archimate-technology-equipment:hover,
+.archimate-technology-facility:hover,
+.archimate-technology-distribution-network:hover,
+.archimate-technology-material:hover,
+.archimate-implementation-work-package:hover,
+.archimate-implementation-deliverable:hover,
+.archimate-implementation-plateau:hover,
+.archimate-common-location:hover,
+.archimate-common-grouping:hover,
+.archimate-common-role:hover,
+.archimate-common-collaboration:hover,
+.archimate-common-service:hover,
+.archimate-common-process:hover,
+.archimate-common-function:hover,
+.archimate-common-event:hover,
+.archimate-common-path:hover {
+background-color: lightgrey;
+}
+
 /* STRATEGY LAYER */ 
 
 .archimate-strategy-value-stream {

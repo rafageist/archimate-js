@@ -1,0 +1,62 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8"><title>ArchiMate 4 runtime smoke</title>
+    <link rel="stylesheet" href="../assets/archimate-js.css">
+    <link rel="stylesheet" href="../assets/palette-icons.css">
+  </head>
+  <body>
+    <p id="status">running</p>
+    <div id="canvas" style="width: 1400px; height: 900px"></div>
+    <script src="../dist/archimate-modeler.production.min.js"></script>
+    <script>
+      (async function() {
+        try {
+          const Modeler = window.ArchimateJS.default || window.ArchimateJS;
+          const registry = Modeler.Archimate4Registry;
+          const modeler = new Modeler({ container: '#canvas' });
+          await modeler.createNewModel();
+          const canvas = modeler.get('canvas');
+          const elementFactory = modeler.get('elementFactory');
+          const modeling = modeler.get('modeling');
+          const root = canvas.getRootElement();
+
+          registry.concepts.forEach((concept, index) => {
+            const shape = elementFactory.createShape({ type: concept.id });
+            modeling.createShape(shape, {
+              x: 80 + (index % 7) * 180,
+              y: 60 + Math.floor(index / 7) * 120
+            }, root);
+          });
+
+          const rendered = registry.concepts.filter((concept) => {
+            const shape = modeler.get('elementRegistry').filter((item) => item.type === concept.id)[0];
+            if (!shape || !shape.businessObject.elementRef || shape.businessObject.elementRef.type !== concept.id) {
+              return false;
+            }
+            return Boolean(document.querySelector(`[data-element-id="${shape.id}"] path`));
+          });
+          if (rendered.length !== registry.concepts.length) {
+            throw new Error(`Only ${rendered.length}/${registry.concepts.length} concepts rendered`);
+          }
+
+          const saved = await modeler.saveXML({ format: true });
+          await modeler.importXML(saved.xml);
+          const importedModel = modeler.get('canvas').getRootElement().modelRef;
+          const roundTripped = new Set(
+            importedModel.elementsNode.baseElements.map((item) => item.type)
+          );
+          const missing = registry.concepts.filter((concept) => !roundTripped.has(concept.id));
+          if (missing.length) throw new Error(`Round-trip failed: ${missing.map((item) => item.id).join(', ')}`);
+
+          document.body.dataset.status = 'passed';
+          document.getElementById('status').textContent =
+            `passed: ${registry.concepts.length} concepts created, rendered and round-tripped`;
+        } catch (error) {
+          document.body.dataset.status = `failed:${error.message}`;
+          document.getElementById('status').textContent = `failed: ${error.stack || error.message}`;
+        }
+      })();
+    </script>
+  </body>
+</html>
