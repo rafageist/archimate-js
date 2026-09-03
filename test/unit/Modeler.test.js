@@ -30,7 +30,7 @@ describe('Modeler', () => {
 
   it('should import XML', async () => {
     const xml = `<?xml version="1.0" encoding="UTF-8"?>
-      <archimate:Model id="model-test" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+      <archimate:Model xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
         xmlns:archimate="http://www.opengroup.org/xsd/archimate/3.0/" 
         xsi:schemaLocation="http://www.opengroup.org/xsd/archimate/3.0/ http://www.opengroup.org/xsd/archimate/3.1/archimate3_Diagram.xsd">
         <name>Test Model</name>
@@ -39,7 +39,7 @@ describe('Modeler', () => {
         </archimate:Elements>
         <archimate:Views>
           <archimate:Diagrams>
-            <archimate:View id="view-test">
+            <archimate:View>
               <name>Test View</name>
               <documentation></documentation>
             </archimate:View>

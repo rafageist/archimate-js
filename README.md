@@ -29,11 +29,6 @@ Vite opens the standalone editor at `http://localhost:3000`. The demo includes:
 The demo deliberately has no backend. “Save locally” stores XML in the current
 browser's `localStorage`; “Export” downloads a portable `.archimate` file.
 
-Imports are strict and transactional: unsupported concepts, unresolved references,
-invalid graphical connections, or render failures reject the complete file and
-leave the currently open model unchanged. Compatibility is based on structures
-the engine understands rather than trusting a particular producer or version label.
-
 ## Build a static demo
 
 ```bash
