@@ -1,0 +1,29 @@
+:root { color: #263238; font-family: Inter, system-ui, sans-serif; }
+* { box-sizing: border-box; }
+html, body { width: 100%; height: 100%; margin: 0; overflow: hidden; }
+body { display: grid; grid-template-rows: auto 1fr auto; background: #f7f8fa; }
+.toolbar { display: flex; align-items: center; gap: .45rem; padding: .65rem 1rem; color: white; background: #263238; box-shadow: 0 2px 8px #0003; z-index: 10; }
+.brand { color: white; font-size: 1.1rem; font-weight: 750; text-decoration: none; }
+.subtitle { color: #cfd8dc; }
+.spacer { flex: 1; }
+button, input, select { border: 1px solid #b0bec5; border-radius: .35rem; padding: .45rem .65rem; font: inherit; }
+button { cursor: pointer; background: white; }
+button:hover { background: #eceff1; }
+#canvas { min-width: 0; min-height: 0; background: white; }
+#status { min-height: 2rem; padding: .4rem 1rem; color: #455a64; background: #eceff1; }
+#status.error { color: #b71c1c; background: #ffebee; }
+dialog { width: min(96vw, 1500px); height: min(90vh, 900px); border: 0; border-radius: .6rem; padding: 1rem; box-shadow: 0 12px 50px #0006; }
+dialog::backdrop { background: #102027aa; }
+.dialog-heading { display: flex; justify-content: space-between; align-items: start; }
+.dialog-heading h2, .dialog-heading p { margin: 0 0 .35rem; }
+.matrix-filters { display: grid; grid-template-columns: 1fr 1fr 14rem; gap: .5rem; margin: .75rem 0; }
+.matrix-scroll { height: calc(100% - 11rem); overflow: auto; border: 1px solid #cfd8dc; }
+.matrix-scroll table { border-collapse: separate; border-spacing: 0; width: max-content; min-width: 100%; font-size: .72rem; }
+.matrix-scroll th, .matrix-scroll td { min-width: 3.3rem; height: 2rem; padding: .25rem; border: 0 solid #dce2e5; border-right-width: 1px; border-bottom-width: 1px; text-align: center; }
+.matrix-scroll thead th { position: sticky; top: 0; z-index: 2; height: 9rem; background: #eceff1; vertical-align: bottom; }
+.matrix-scroll thead span { display: inline-block; writing-mode: vertical-rl; transform: rotate(180deg); }
+.matrix-scroll tbody th, .matrix-scroll thead th:first-child { position: sticky; left: 0; z-index: 1; min-width: 11rem; background: #eceff1; text-align: left; }
+.matrix-scroll thead th:first-child { z-index: 3; }
+.matrix-scroll td.has-relationships { color: #4527a0; background: #ede7f6; font-weight: 750; cursor: help; }
+.matrix-legend { display: flex; flex-wrap: wrap; gap: .3rem 1rem; padding-top: .7rem; font-size: .8rem; }
+@media (max-width: 900px) { .subtitle { display: none; } .toolbar { flex-wrap: wrap; } .matrix-filters { grid-template-columns: 1fr; } }

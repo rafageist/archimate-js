@@ -20,13 +20,16 @@
     "test:coverage": "jest --coverage",
     "test:ci": "jest --ci --coverage",
     "start": "vite",
+    "demo": "vite --config examples/standalone/vite.config.js --open",
+    "demo:build": "yarn generate:relationships && vite build --config examples/standalone/vite.config.js",
+    "demo:preview": "vite preview --config examples/standalone/vite.config.js",
     "generate:relationships": "node tools/generate-archimate4-relationships.mjs",
     "build": "yarn generate:relationships && vite build",
     "preview": "vite preview"
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/archimodel/archimate-js"
+    "url": "https://github.com/rafageist/archimate-js"
   },
   "files": [
     "index.js",

@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Standalone ArchiMate 4 modeler demo powered by archimate-js">
+    <title>archimate-js · ArchiMate 4 modeler</title>
+  </head>
+  <body>
+    <header class="toolbar">
+      <a class="brand" href="https://github.com/rafageist/archimate-js">archimate-js</a>
+      <span class="subtitle">ArchiMate 4 standalone demo</span>
+      <div class="spacer"></div>
+      <button id="new-model">New</button>
+      <button id="save-local">Save locally</button>
+      <button id="open-local">Open saved</button>
+      <button id="import-model">Import</button>
+      <button id="export-model">Export</button>
+      <button id="show-matrix">Relationships</button>
+      <button id="zoom-out" aria-label="Zoom out">−</button>
+      <button id="zoom-fit">Fit</button>
+      <button id="zoom-in" aria-label="Zoom in">+</button>
+      <input id="file-input" type="file" accept=".archimate,.xml,text/xml,application/xml" hidden>
+    </header>
+    <main id="canvas" aria-label="ArchiMate diagram canvas"></main>
+    <output id="status" role="status">Loading modeler…</output>
+
+    <dialog id="matrix-dialog">
+      <form method="dialog" class="dialog-heading">
+        <div><h2>ArchiMate Relationships</h2><p>Source concepts are rows; target concepts are columns.</p></div>
+        <button aria-label="Close">Close</button>
+      </form>
+      <div class="matrix-filters">
+        <input id="source-filter" placeholder="Filter source concepts">
+        <input id="target-filter" placeholder="Filter target concepts">
+        <select id="domain-filter"><option value="">All domains</option></select>
+      </div>
+      <div id="matrix-container" class="matrix-scroll"></div>
+      <div id="matrix-legend" class="matrix-legend"></div>
+    </dialog>
+
+    <script type="module" src="/app.js"></script>
+  </body>
+</html>
