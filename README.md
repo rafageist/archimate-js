@@ -1,5 +1,7 @@
 # archimate-js
 
+<img width="1035" height="824" alt="image" src="https://github.com/user-attachments/assets/15e4635d-2f9f-4efd-9647-311dd2e697f8" />
+
 An open-source browser modeler for ArchiMate diagrams, built on
 [diagram-js](https://github.com/bpmn-io/diagram-js). This fork introduces an
 incremental ArchiMate 4 foundation with 42 native concepts, a canonical
